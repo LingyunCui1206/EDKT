@@ -1,65 +1,16 @@
-# v1.0
-# ----实现了题目间语义相似度，AUC性能提高7
-# v2.0
-# ----实现了错误间语义相似度，AUC性能提高2
-
 
 # Setup
-`pip install tree-sitter`
-## Install languages
-Tree-sitter language implementations also provide pre-compiled binary wheels. Let's take Python as an example.
+To build and manipulate tree structures, which facilitates the visualization and analysis of hierarchical data, we first install the anytree package.
+`pip install anytree`
+Since the open-ended coding tasks we analyzed are in the Java language, the javalang package is installed to parse and process the Java codes, facilitating the extraction of the codes' syntactic structure and semantic information.
+`pip install javalang`
 
-【ast_parser.py】
+# Processing
+The path_extractor file is used to parse the path of the code and store it in labeled_paths.tsv.
+The preprocessing file is used to split the training set, the validation set and the prediction set.
 
-`pip install tree-sitter-java`
-
-Then, you can load it as a Language object:
-
-`import tree_sitter_java as tsjava
-from tree_sitter import Language, Parser
-
-PY_LANGUAGE = Language(tsjava.language())
-
-parser = Parser(JAVA_LANGUAGE)`
-
-## Basic parsing
-Create a Parser and configure it to use a language:
-
-`parser = Parser(PY_LANGUAGE)
-Parse some source code:
-
-tree = parser.parse(
-    bytes(
-        """
-    ...code...
-""",
-        "utf8"
-    )
-)`
-
-## 预处理
-path_extractor.py是处理DKT中的代码路径并存入labeled_paths.tsv中。
-code_processing.py是处理Trans_code中的代码路径并存入labeled_paths.tsv中。
- ----------改-----------
-code_processing.py中生成正样本后，还是用原来的提取方法提取路径
-`pip install anytree javalang`
-
-preprocessing.py用于切分训练集、验证集以及预测集
-
-## 运行
+# Operation
 run.py -> dataloader.py -> readdata.py
-       -> evaluation.py -> c2vRNNModel.py
+       -> evaluation.py -> EDKT.py
        
-       
-       
-
-
-67,
- 1718909,1718914,1718811,1718812,1718813,1718814,1718815,1718818,1718819,1718821,1718822,1718823,1718824,1718830,1718831,1718832,1718835,1718836,1718837,1718838,1718839,1718842,1718845,1718846,1718850,1718854,1718855,1718856,1718857,1719119,1719121,1719122,1719130,1719139,1719141,1719143,1719151,1719152,1719163,1718867,1718869,1718870,1718871,1719059,1719060,1718970,1718977,1718983,1718988,1718989,1718990,1718996,1718997,1719010,1719169,1718895,1718899,1718932,1718933,1718935,1718951,1719087,1719101,1719106,1719108,1719170,1719178,
- 0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,4,4,5,5,5,5,5,5,5,5,5,5,6,6,7,7,7,7,8,9,9,9,9,9,
- 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,0,0,1,
- 3,1,0,0,0,0,0,0,9,0,0,0,0,0,0,0,9,0,0,0,0,9,5,5,5,0,0,0,1,0,0,3,3,3,0,3,0,3,1,0,0,0,1,0,1,5,0,8,8,0,8,0,8,5,1,4,1,0,0,4,1,1,5,0,5,3,1,
- @12,@0,@8,@11,@8@11,@8@8,@3,@11,@12,@11,@8@8,@8@8,@11,@11,@11@11,@11@11,@12,@11,@8,@11,@11,@12,@12,@12,@12,@11,@8,@11,@0,@11,@11,@12,@12,@12,@8@8@8,@12,@11,@12,@0,@7,@7,@11,@0,@10@10@10@10@10,@0,@12,@11,@12,@12,@11,@12,@11,@12,@12,@0,@12,@0,@10@10@10@10,@10@10@10,@12,@0,@0,@12,@11,@12,@12,@0,
-       
-
        
